@@ -19,11 +19,27 @@
             <div>Objetivo: <span id="target-score">300</span></div>
             <div>Puntuación: <span id="current-score">0</span></div>
             <div>Manos: <span id="hands-left">4</span></div>
+            <div>Oro: <span id="gold-display">4</span>$</div>
         </div>
 
-        <!-- Zona de Cartas Jugadas -->
-        <div class="play-area" id="play-area">
-            <span class="placeholder-text">Juega tus cartas aquí</span>
+        <!-- Zona de Jokers (Mascotas) -->
+        <div class="joker-area">
+            <h3>Tus Compañeros:</h3>
+            <div id="joker-slots" class="joker-slots">
+                <!-- Los jokers equipados aparecerán aquí -->
+                <div class="joker-slot empty">Vacío</div>
+                <div class="joker-slot empty">Vacío</div>
+            </div>
+        </div>
+
+        <!-- Zona de Cartas Jugadas & Resumen de Cálculo -->
+        <div class="play-section">
+            <div class="calculation-panel" id="calc-panel">
+                <span class="placeholder-text">Selecciona cartas para ver el cálculo...</span>
+            </div>
+            <div class="play-area" id="play-area">
+                <span class="placeholder-text">Juega tus cartas aquí</span>
+            </div>
         </div>
 
         <!-- Mano del Jugador -->
@@ -34,7 +50,11 @@
         <!-- Botones de Acción -->
         <div class="controls">
             <button id="play-btn">Jugar Mano</button>
-            <button id="discard-btn" class="secondary-btn">Descartar</button>
+            <button id="discard-btn" class="secondary-btn">Descartar (-1 Descarte)</button>
+        </div>
+        
+        <div class="info-bar">
+            <small>Descartes restantes: <span id="discards-left">3</span></small>
         </div>
     </div>
 
