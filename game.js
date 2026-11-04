@@ -20,6 +20,7 @@ const JOKER_CATALOG = {
         price: 0,
         rarity: 'common',
         iconType: 'normal',
+        iconChar: '🐺',
         effect: (state, handResult) => {
             return { ...handResult, mult: handResult.mult + 4 };
         }
