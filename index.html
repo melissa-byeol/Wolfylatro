@@ -27,8 +27,6 @@
             <h3>Tus Compañeros:</h3>
             <div id="joker-slots" class="joker-slots">
                 <!-- Los jokers equipados aparecerán aquí -->
-                <div class="joker-slot empty">Vacío</div>
-                <div class="joker-slot empty">Vacío</div>
             </div>
         </div>
 
@@ -55,6 +53,22 @@
         
         <div class="info-bar">
             <small>Descartes restantes: <span id="discards-left">3</span></small>
+        </div>
+    </div>
+
+    <!-- MODAL DE TIENDA (Oculto por defecto) -->
+    <div id="shop-modal" class="modal hidden">
+        <div class="modal-content shop-container">
+            <h2>🛒 Tienda de Mascotas</h2>
+            <p>Gasta tu oro para mejorar tu manada.</p>
+            
+            <div id="shop-items" class="shop-grid">
+                <!-- Items generados por JS -->
+            </div>
+
+            <div class="shop-footer">
+                <button id="continue-btn" class="primary-btn">Continuar Siguiente Ronda ➡️</button>
+            </div>
         </div>
     </div>
 
