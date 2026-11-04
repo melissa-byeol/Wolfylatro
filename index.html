@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolfylatro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Wolfylatro</h1>
+        <p>Apunta alto, manada 🐺✨</p>
+    </header>
+
+    <div class="game-container">
+        <!-- Panel de Puntuación -->
+        <div class="score-board">
+            <div>Objetivo: <span id="target-score">300</span></div>
+            <div>Puntuación: <span id="current-score">0</span></div>
+            <div>Manos: <span id="hands-left">4</span></div>
+        </div>
+
+        <!-- Zona de Cartas Jugadas -->
+        <div class="play-area" id="play-area">
+            <span class="placeholder-text">Juega tus cartas aquí</span>
+        </div>
+
+        <!-- Mano del Jugador -->
+        <div class="hand-area" id="hand-area">
+            <!-- Las cartas se inyectarán con JS -->
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="controls">
+            <button id="play-btn">Jugar Mano</button>
+            <button id="discard-btn" class="secondary-btn">Descartar</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
