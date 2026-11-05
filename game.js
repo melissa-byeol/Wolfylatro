@@ -11,20 +11,170 @@ const suits = [
 
 const values = Array.from({length: 13}, (_, i) => i + 2); 
 
-// Definición de Jokers Disponibles
+// Definición Completa de Jokers
 const JOKER_CATALOG = {
+    // --- BÁSICO ---
     lobito: {
         id: 'lobito',
         name: 'Lobito',
         desc: '+4 Mult',
         price: 0,
         rarity: 'common',
-        iconType: 'normal',
         iconChar: '🐺',
         effect: (state, handResult) => {
-            return { ...handResult, mult: handResult.mult + 4 };
+            return { ...handResult, finalMult: handResult.finalMult + 4 };
         }
     },
+    
+    // --- CHIPS (+5 por pinta específica) ---
+    lobito_timido: {
+        id: 'lobito_timido',
+        name: 'Lobito Tímido',
+        desc: '+5 Chips por cada Corazón',
+        price: 4,
+        rarity: 'common',
+        iconChar: '😳',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'corazones').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+    lobito_mordelon: {
+        id: 'lobito_mordelon',
+        name: 'Lobito Mordelón',
+        desc: '+5 Chips por cada Hueso',
+        price: 4,
+        rarity: 'common',
+        iconChar: '🦴',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'huesos').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+    lobito_triste: {
+        id: 'lobito_triste',
+        name: 'Lobito Triste',
+        desc: '+5 Chips por cada Gota',
+        price: 4,
+        rarity: 'common',
+        iconChar: '😢',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'gotas').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+    lobito_curioso: {
+        id: 'lobito_curioso',
+        name: 'Lobito Curioso',
+        desc: '+5 Chips por cada Esmeralda',
+        price: 4,
+        rarity: 'common',
+        iconChar: '🧐',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'esmeraldas').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+    lobito_jugueton: {
+        id: 'lobito_jugueton',
+        name: 'Lobito Juguetón',
+        desc: '+5 Chips por cada Cascabel',
+        price: 4,
+        rarity: 'common',
+        iconChar: '🔔',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'cascabeles').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+    lobito_sonador: {
+        id: 'lobito_sonador',
+        name: 'Lobito Soñador',
+        desc: '+5 Chips por cada Estrella',
+        price: 4,
+        rarity: 'common',
+        iconChar: '💤',
+        effect: (state, handResult) => {
+            const count = state.hand.filter(c => c.selected && c.suit.name === 'estrellas').length;
+            return { ...handResult, totalChips: handResult.totalChips + (count * 5) };
+        }
+    },
+
+    // --- MULT (+3 si hay al menos 1 de esa pinta) ---
+    lobito_amoroso: {
+        id: 'lobito_amoroso',
+        name: 'Lobito Amoroso',
+        desc: '+3 Mult si juegas Corazones',
+        price: 5,
+        rarity: 'common',
+        iconChar: '❤️',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'corazones');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+    lobito_calavera: {
+        id: 'lobito_calavera',
+        name: 'Lobito Calavera',
+        desc: '+3 Mult si juegas Huesos',
+        price: 5,
+        rarity: 'common',
+        iconChar: '💀',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'huesos');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+    lobito_paraguas: {
+        id: 'lobito_paraguas',
+        name: 'Lobito Paraguas',
+        desc: '+3 Mult si juegas Gotas',
+        price: 5,
+        rarity: 'common',
+        iconChar: '☂️',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'gotas');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+    lobito_ricachon: {
+        id: 'lobito_ricachon',
+        name: 'Lobito Ricachón',
+        desc: '+3 Mult si juegas Esmeraldas',
+        price: 5,
+        rarity: 'common',
+        iconChar: '🕶️',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'esmeraldas');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+    lobito_inquieto: {
+        id: 'lobito_inquieto',
+        name: 'Lobito Inquieto',
+        desc: '+3 Mult si juegas Cascabeles',
+        price: 5,
+        rarity: 'common',
+        iconChar: '⚡',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'cascabeles');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+    lobito_astronauta: {
+        id: 'lobito_astronauta',
+        name: 'Lobito Astronauta',
+        desc: '+3 Mult si juegas Estrellas',
+        price: 5,
+        rarity: 'common',
+        iconChar: '👨‍🚀',
+        effect: (state, handResult) => {
+            const hasSuit = state.hand.some(c => c.selected && c.suit.name === 'estrellas');
+            return { ...handResult, finalMult: handResult.finalMult + (hasSuit ? 3 : 0) };
+        }
+    },
+
+    // --- RARO / ESPECIAL ---
     lobito_mal_imprimido: {
         id: 'lobito_mal_imprimido',
         name: 'Lobito Mal Imprimido',
@@ -38,11 +188,10 @@ const JOKER_CATALOG = {
             const randomMultBonus = JOKER_CATALOG.lobito_mal_imprimido.getBonusMult();
             let newMult = handResult.finalMult + randomMultBonus;
             
-            // Marcamos que este resultado proviene de un joker inestable
             return { 
                 ...handResult, 
                 finalMult: newMult,
-                isGlitchy: true, // FLAG IMPORTANTE PARA LA UI
+                isGlitchy: true,
                 rawRandomValue: randomMultBonus 
             };
         }
@@ -148,7 +297,7 @@ function renderJokers() {
         if (jokerData.iconType === 'glitch') {
             iconHtml = `<div class="joker-icon joker-glitch-icon" data-text="${jokerData.iconChar}">${jokerData.iconChar}</div>`;
         } else {
-            iconHtml = `<div class="joker-icon">${jokerData.icon || '❓'}</div>`;
+            iconHtml = `<div class="joker-icon">${jokerData.iconChar || '❓'}</div>`;
         }
 
         slot.innerHTML = `
@@ -501,7 +650,7 @@ function renderShop() {
         if (joker.iconType === 'glitch') {
             iconHtml = `<div class="joker-icon joker-glitch-icon" data-text="${joker.iconChar}" style="font-size:2rem; margin-bottom:10px;">${joker.iconChar}</div>`;
         } else {
-            iconHtml = `<div class="joker-icon" style="font-size:2rem; margin-bottom:10px;">${joker.icon || '❓'}</div>`;
+            iconHtml = `<div class="joker-icon" style="font-size:2rem; margin-bottom:10px;">${joker.iconChar || '❓'}</div>`;
         }
 
         itemDiv.innerHTML = `
