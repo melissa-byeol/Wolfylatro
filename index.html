@@ -7,71 +7,75 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <h1>Wolfylatro</h1>
-        <p>Apunta alto, manada 🐺✨</p>
-    </header>
-
-    <div class="game-container">
-        <!-- Panel de Puntuación -->
-        <div class="score-board">
-            <div>Objetivo: <span id="target-score">300</span></div>
-            <div>Puntuación: <span id="current-score">0</span></div>
-            <div>Manos: <span id="hands-left">4</span></div>
-            <div>Oro: <span id="gold-display">4</span>$</div>
+    <!-- PANTALLA DE TÍTULO -->
+    <div id="title-screen" class="screen active">
+        <div class="title-logo">
+            <svg class="logo-icon" viewBox="0 0 100 100"><path d="M50 10 L20 40 L30 90 L70 90 L80 40 Z" fill="#ff9f43"/><circle cx="35" cy="45" r="5" fill="#1a1c23"/><circle cx="65" cy="45" r="5" fill="#1a1c23"/></svg>
+            <h1>WOLFYLATRO</h1>
+            <p class="subtitle">Apunta alto, manada</p>
         </div>
-
-        <!-- Zona de Jokers (Mascotas) -->
-        <div class="joker-area">
-            <h3>Tus Compañeros:</h3>
-            <div id="joker-slots" class="joker-slots">
-                <!-- Los jokers equipados aparecerán aquí -->
-            </div>
+        <div class="menu-options">
+            <button id="btn-start" class="menu-btn">Nueva Partida</button>
+            <button id="btn-tutorial" class="menu-btn secondary">Tutorial</button>
         </div>
-
-        <!-- Zona de Cartas Jugadas & Resumen de Cálculo -->
-        <div class="play-section">
-            <div class="calculation-panel" id="calc-panel">
-                <span class="placeholder-text">Selecciona cartas para ver el cálculo...</span>
-            </div>
-            <div class="play-area" id="play-area">
-                <span class="placeholder-text">Juega tus cartas aquí</span>
-            </div>
-        </div>
-
-        <!-- Mano del Jugador -->
-        <div class="hand-area" id="hand-area">
-            <!-- Las cartas se inyectarán con JS -->
-        </div>
-
-        <!-- Botones de Acción -->
-        <div class="controls">
-            <button id="play-btn">Jugar Mano</button>
-            <button id="discard-btn" class="secondary-btn">Descartar (-1 Descarte)</button>
-        </div>
-        
-        <div class="info-bar">
-            <small>Descartes restantes: <span id="discards-left">3</span></small>
+        <div class="settings-row">
+            <label>Velocidad: <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.0"></label>
+            <label><input type="checkbox" id="audio-toggle" checked> Audio</label>
         </div>
     </div>
 
-    <!-- MODAL DE TIENDA (Oculto por defecto) -->
+    <!-- OVERLAY TUTORIAL -->
+    <div id="tutorial-overlay" class="modal hidden">
+        <div class="tutorial-card">
+            <div class="tutor-mascot">🐺</div>
+            <p id="tutorial-text"></p>
+            <button id="tutorial-next" class="menu-btn">Siguiente</button>
+        </div>
+    </div>
+
+    <!-- JUEGO PRINCIPAL -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-container">
+            <div class="score-board">
+                <div>Objetivo: <span id="target-score">300</span></div>
+                <div>Puntos: <span id="current-score">0</span></div>
+                <div>Manos: <span id="hands-left">4</span></div>
+                <div>Oro: <span id="gold-display">4</span>$</div>
+            </div>
+
+            <div class="joker-area">
+                <h3>Tus Compañeros</h3>
+                <div id="joker-slots" class="joker-slots"></div>
+            </div>
+
+            <div class="play-section">
+                <div class="calculation-panel" id="calc-panel">
+                    <span class="placeholder-text">Selecciona cartas para ver el cálculo...</span>
+                </div>
+                <div class="play-area" id="play-area">
+                    <span class="placeholder-text">Juega tus cartas aquí</span>
+                </div>
+            </div>
+
+            <div class="hand-area" id="hand-area"></div>
+
+            <div class="controls">
+                <button id="play-btn">Jugar Mano</button>
+                <button id="discard-btn" class="secondary-btn">Descartar</button>
+            </div>
+            <div class="info-bar">Descartes: <span id="discards-left">3</span></div>
+        </div>
+    </div>
+
+    <!-- TIENDA -->
     <div id="shop-modal" class="modal hidden">
         <div class="modal-content shop-container">
             <h2>🛒 Tienda de Mascotas</h2>
-            <p>Gasta tu oro para mejorar tu manada.</p>
-            
-            <div id="shop-items" class="shop-grid">
-                <!-- Items generados por JS -->
-            </div>
-
-            <div class="shop-footer">
-                <button id="continue-btn" class="primary-btn">Continuar Siguiente Ronda ➡️</button>
-            </div>
+            <div id="shop-items" class="shop-grid"></div>
+            <button id="continue-btn" class="menu-btn primary-btn">Siguiente Ronda ➡️</button>
         </div>
     </div>
 
-    <script src="game.js"></script>
+    <script type="module" src="game.js"></script>
 </body>
 </html>
